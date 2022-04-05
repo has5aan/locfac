@@ -1,4 +1,4 @@
-const makeAddressValidator = (web3) => async (address) => {
+const makeAddressValidator = (web3) => (address) => {
     return web3.utils.isHexStrict(address) && web3.utils.isAddress(address)
 }
 
