@@ -52,5 +52,27 @@ describe('Locker Validator', async () => {
                 })).to.be.rejectedWith(ValidationError)
             })
         })
+
+        describe('address:', async () => {
+            it('is a required valid address', async () => {
+                expect(validator.validate({
+                    data: {
+                        address: '0x0089d53F703f7E0843953D48133f74cE247184c2'
+                    }, rulesToBeValidated: ['address']
+                })).to.be.fulfilled
+
+                expect(validator.validate({
+                    data: {
+                        
+                    }, rulesToBeValidated: ['address']
+                })).to.be.rejectedWith(ValidationError)
+
+                expect(validator.validate({
+                    data: {
+                        address: '0x0089d53F703f7E0843953D48133f74cE24'
+                    }, rulesToBeValidated: ['address']
+                })).to.be.rejectedWith(ValidationError)
+            })
+        })
     })
 })
