@@ -9,7 +9,7 @@ The information about locker and access to it are maintained on a Smart Contract
 - ### npm run dev - Runs test Ethereum Environment
 
 ## Code Coverage
-![Code Coverage](./docs/code-coverage.png)
+
 
 ## Directory Structure
 - adapters
