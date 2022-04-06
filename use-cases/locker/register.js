@@ -9,7 +9,7 @@ module.exports = ({ repository, validator }) => async ({ locker, status }) => {
     })
 
     try {
-        await repository.register({ locker, status })
+        return await repository.register({ locker, status })
     }
     catch (err) {
         throw new BlockChainError(err.message)

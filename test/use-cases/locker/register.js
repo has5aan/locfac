@@ -6,9 +6,11 @@ const { BlockChainError, ValidationError } = require('../../../lib/errors')
 
 const makeRegister = require('../../../use-cases/locker/register')
 
+const transactionReceipt = {}
+
 const repository = {
     register: sinon.fake(() => new Promise((resolve, reject) => {
-        resolve()
+        resolve(transactionReceipt)
     }))
 }
 
@@ -37,7 +39,7 @@ describe('Register locker use-case', async () => {
 
         let args = { locker: 1, status: 1 }
 
-        await register(args)
+        let actualTransactionReceipt = await register(args)
 
         expect(repository.register.calledOnceWith(args)).to.be.ok
 
@@ -47,6 +49,8 @@ describe('Register locker use-case', async () => {
         }
 
         expect(validator.validate.calledOnceWith(args)).to.be.ok
+
+        expect(actualTransactionReceipt).eql(transactionReceipt)
     })
 
     it('throws BlockChainError if repository throws an error', async () => {
