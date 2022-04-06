@@ -4,7 +4,8 @@
   "description": "Digital locker based on Ethereum.",
   "main": "index.js",
   "scripts": {
-    "test": "npx nyc mocha test --recursive"
+    "test": "npx nyc mocha test --recursive",
+    "dev": "node run.js"
   },
   "repository": {
     "type": "git",
