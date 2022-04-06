@@ -1,6 +1,4 @@
 const expect = require('chai').expect
-const sinon = require('sinon')
-
 const makeLocker = require('../../repositories/locker/locker')
 
 const makeFakeContract = require('../fixtures/contracts/locker')
@@ -22,13 +20,16 @@ function verifyTransactionPosting(contract, estimateGasFake, encodeABIFake, post
 }
 
 describe('Locker Repository', async () => {
-    let contract, estimateGasFake, encodeABIFake, postTransaction, locker
+    let contract, estimateGasFake, encodeABIFake, postTransaction, transactionReceipt, locker
     const poster = { address: 'poster_address' }
 
     beforeEach(() => {
         ({ contract, estimateGasFake, encodeABIFake, view } = makeFakeContract())
 
-        postTransaction = postTransactionFixture().postTransactionFake
+        let postTransactionFixtureResponse = postTransactionFixture()
+        
+        postTransaction = postTransactionFixtureResponse.postTransactionFake
+        transactionReceipt = postTransactionFixtureResponse.transactionReceipt
 
         locker = makeLocker({ contract, postTransaction, poster })
     })
@@ -36,12 +37,14 @@ describe('Locker Repository', async () => {
     it('registers a locker ', async () => {
         let args = { locker: 1, status: 1 }
 
-        await locker.register(args)
+        let actualTransactionReceipt = await locker.register(args)
 
         expect(contract.methods.register.calledOnceWith(args.locker, args.status))
             .to.be.ok
 
         verifyTransactionPosting(contract, estimateGasFake, encodeABIFake, postTransaction, poster)
+
+        expect(actualTransactionReceipt).to.eql(transactionReceipt)
     })
 
     it('modifies status of a locker', async () => {

@@ -12,7 +12,7 @@ module.exports = ({ contract, postTransaction, poster }) => (
                 gas: estimatedGas
             }
 
-            await postTransaction({ transaction, poster })
+            return await postTransaction({ transaction, poster })
         },
 
         modifyStatus: async ({ locker, status }) => {
