@@ -1,6 +1,7 @@
 # locfac
 
-locfac is a digital locker, accounts can register lockers with a specific identifier and can manage access to locker it owns.
+locfac is a digital locker, accounts can register lockers with a specific identifier and can manage access to the locker.
+The information about locker and access to it are maintained on a Smart Contract for Ethereum blockchain.
 
 ## Environment Configuration
 - ### npm install
