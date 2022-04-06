@@ -8,9 +8,6 @@ The information about locker and access to it are maintained on a Smart Contract
 - ### npm test - Runs test scripts, printing specifications and highlighting code coverage stats.
 - ### npm run dev - Runs test Ethereum Environment
 
-## Code Coverage
-
-
 ## Directory Structure
 - adapters
     - **validator** - Contains the implementation for the validator.
