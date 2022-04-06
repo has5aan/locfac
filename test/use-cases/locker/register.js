@@ -16,7 +16,7 @@ const repository = {
 
 const repositoryFailing = {
     register: sinon.fake(() => new Promise((resolve, reject) => {
-        reject()
+        reject('Error')
     }))
 }
 
@@ -28,7 +28,7 @@ const validator = {
 
 const validatorFailing = {
     validate: sinon.fake(() => new Promise((resolve, reject) => {
-        resolve()
+        reject(new ValidationError('message', {}))
     }))
 }
 
